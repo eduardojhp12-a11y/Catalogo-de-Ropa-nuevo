@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Premium - Comercializadora PH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <div class="nav-brand" id="secret-admin-trigger" title="Comercializadora PH">Comercializadora PH</div>
+        <div class="nav-links">
+            <button id="btn-catalog" class="nav-btn active">Catálogo</button>
+            <button id="btn-logout" class="nav-btn hidden">Salir del Panel</button>
+        </div>
+    </nav>
+
+    <!-- Vista: Catálogo Principal -->
+    <main id="view-catalog" class="view-section active">
+        <header class="section-header">
+            <h1>Colección Exclusiva</h1>
+            <p>Descubre nuestra selección de piezas premium.</p>
+        </header>
+
+        <!-- Barra de Búsqueda y Filtros por Categoría/Género -->
+        <div class="shop-controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar producto por nombre o marca...">
+            </div>
+            <div class="category-filters" id="category-filters">
+                <button class="filter-btn active" data-filter="Todos">Todos</button>
+                <button class="filter-btn" data-filter="Hombre">Hombre</button>
+                <button class="filter-btn" data-filter="Mujer">Mujer</button>
+                <button class="filter-btn" data-filter="Unisex">Unisex</button>
+                <button class="filter-btn" data-filter="Niños">Niños</button>
+            </div>
+        </div>
+
+        <!-- Contenedor del Catálogo -->
+        <div class="catalog-grid" id="product-container">
+            <!-- Productos renderizados por JS -->
+        </div>
+
+        <!-- Mensaje si no hay resultados -->
+        <div id="no-results" class="no-results hidden">
+            <p>No se encontraron productos que coincidan con tu búsqueda.</p>
+        </div>
+    </main>
+
+    <!-- Vista: Detalle del Producto -->
+    <main id="view-detail" class="view-section">
+        <button id="btn-back-catalog" class="secondary-btn back-btn">← Volver al Catálogo</button>
+        <div class="product-detail-layout" id="product-detail-container">
+            <!-- Detalles renderizados por JS -->
+        </div>
+    </main>
+
+    <!-- Vista: Login de Admin (Oculto) -->
+    <main id="view-login" class="view-section">
+        <div class="login-card">
+            <h2>Acceso Restringido</h2>
+            <p>Área de administración de Comercializadora PH.</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" required placeholder="Usuario">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" required placeholder="Contraseña">
+                </div>
+                <button type="submit" class="primary-btn">Ingresar al Sistema</button>
+                <p id="login-error" class="error-msg"></p>
+            </form>
+        </div>
+    </main>
+
+    <!-- Vista: Panel de Administración -->
+    <main id="view-admin" class="view-section">
+        <header class="section-header admin-header">
+            <div>
+                <h1>Panel de Control</h1>
+                <p>Gestiona tu inventario y especificaciones.</p>
+            </div>
+            <button id="btn-add-new" class="primary-btn">+ Nuevo Producto</button>
+        </header>
+
+        <!-- Formulario Admin -->
+        <div id="product-form-container" class="admin-form-container hidden">
+            <h3 id="form-title">Agregar Producto</h3>
+            <form id="product-form">
+                <input type="hidden" id="prod-id">
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Nombre del Producto</label>
+                        <input type="text" id="prod-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Precio ($)</label>
+                        <input type="number" step="0.01" id="prod-price" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Marca</label>
+                        <input type="text" id="prod-brand" placeholder="Ej: PH Exclusive" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Género</label>
+                        <select id="prod-gender" required class="custom-select">
+                            <option value="Unisex">Unisex</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Niños">Niños</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Tallas (separadas por coma)</label>
+                        <input type="text" id="prod-sizes" placeholder="Ej: S, M, L, XL" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Colores (separados por coma)</label>
+                        <input type="text" id="prod-colors" placeholder="Ej: Negro, Blanco, Azul" required>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>URLs de Imágenes y/o Video (separadas por coma)</label>
+                    <input type="text" id="prod-images" placeholder="Ingresa URLs de fotos o video (.mp4)" required>
+                    <small style="color: var(--text-light); font-size: 0.8rem;">Puedes poner enlaces de imágenes o un enlace de video MP4 al final.</small>
+                </div>
+                
+                <div class="input-group">
+                    <label>Descripción del Producto</label>
+                    <textarea id="prod-desc" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="btn-cancel-form" class="secondary-btn">Cancelar</button>
+                    <button type="submit" class="primary-btn">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Género</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-product-list"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
