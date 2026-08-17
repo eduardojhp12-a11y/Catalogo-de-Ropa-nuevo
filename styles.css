@@ -17,11 +17,26 @@
 body {
     font-family: var(--font-family);
     color: var(--text-color);
-    background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9wYXxlbnwwfHwwfHx8MA%3D%3D');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    /* Ruta de tu imagen (local o enlace web) */
+    background-image: url('tu-imagen.jpg'); 
+    
+    /* Evita que la imagen se repita */
+    background-repeat: no-repeat; 
+    
+    /* Centra la imagen en la pantalla */
+    background-position: center; 
+    
+    /* Ajusta la imagen para que cubra todo el fondo */
+    background-size: cover; 
+    
+    /* Mantiene el fondo fijo al hacer scroll (opcional) */
+    background-attachment: fixed; 
+    
+    /* Ocupa el 100% de la altura de la pantalla */
+    height: 100vh; 
+    
+    /* Elimina el margen por defecto del navegador */
+    margin: 0; 
 }
 
 /* Navbar */
